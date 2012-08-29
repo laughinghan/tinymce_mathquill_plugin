@@ -1,0 +1,3 @@
+[submodule "mathquill"]
+	path = vendor/mathquill
+	url = git://github.com/laughinghan/mathquill.git
