@@ -14,6 +14,9 @@ that are rendered as images.
 Please note that this is a beta version, so bugs and unimplemented features
 are all over the place.
 
+Dev note: on `git clone`- or `git pull`-ing, make sure to `git submodule update`
+and `make`.
+
 ## Open-Source License
 
 [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)
