@@ -26,8 +26,8 @@
 			ed.addCommand('mceMathquill', function() {
 				ed.windowManager.open({
 					file : url + '/mathField.htm',
-					width : 705,
-					height : 170,
+					width : 706,
+					height : 199,
 					inline : 1
 				}, {
 					plugin_url : url, // Plugin absolute URL
