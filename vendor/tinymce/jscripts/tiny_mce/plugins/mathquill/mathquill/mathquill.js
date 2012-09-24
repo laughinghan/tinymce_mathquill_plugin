@@ -472,16 +472,16 @@ function addToolbar(root, jQ) {
   });
   root.toolbar = $('<div class="mathquill-toolbar"><ul class="mathquill-tab-bar">' + tabs.join('') + '</ul><div class="mathquill-toolbar-panes">' + panes.join('') + '</div></div>').prependTo(jQ);
 
-  jQ.find('.mathquill-tab-bar li a').mouseenter(function() {
+  jQ.find('.mathquill-tab-bar li a')
+  .click(false)
+  .mouseenter(function() {
     jQ.find('.mathquill-tab-bar li').removeClass('mathquill-tab-selected');
     jQ.find('.mathquill-tab-pane').removeClass('mathquill-tab-pane-selected');
     $(this).parent().addClass('mathquill-tab-selected');
     $(this.href.replace(/.*#/, '#'), this.ownerDocument).addClass('mathquill-tab-pane-selected');
   });
   jQ.find('.mathquill-tab-bar li:first-child a').mouseenter();
-  jQ.find('a.mathquill-rendered-math').mousedown(function(e) {
-    e.stopPropagation();
-  }).click(function(){
+  jQ.click(function(){
     root.cursor.writeLatex(this.title, true);
     jQ.focus();
   });
