@@ -25,7 +25,7 @@
       // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceMathquill');
       ed.addCommand('mceMathquill', function() {
         ed.windowManager.open({
-          file : url + '/mathField.htm',
+          file : url + '/mathField.html',
           width : 706,
           height : 199,
           inline : 1
