@@ -1,25 +1,22 @@
 tinyMCEPopup.requireLangPack();
 
 var MathquillDialog = {
-	init : function() {
+  init : function() {
     var $ = window.top.$;
-    $('.mathquill-editor', document).mathquill('editor');
-  /*
-    vardd f = document.forms[0];
+    $('.mathquill-editor', document).mathquill('editor')
+      .keydown(function(e) {
+        if (e.which === 13) {
+          MathquillDialog.insertLatex($(this).mathquill('latex'));
+        }
+      });
+  },
 
-		// Get the selected contents as text and place it in the input
-		f.someval.value = tinyMCEPopup.editor.selection.getContent({format : 'text'});
-		f.somearg.value = tinyMCEPopup.getWindowArg('some_custom_arg');
-    */
-	},
-
-	insert : function() {
-		/*
-    // Insert the contents from the input into the document
-		tinyMCEPopup.editor.execCommand('mceInsertContent', false, document.forms[0].someval.value);
-		tinyMCEPopup.close();
-    */
-	}
+  insertLatex : function(val) {
+    // Insert latex into the main tinyMCE document
+    tinyMCEPopup.restoreSelection();
+    tinyMCEPopup.editor.execCommand('mceMathquillInsert', val);
+    tinyMCEPopup.close();
+  }
 };
 
 tinyMCEPopup.onInit.add(MathquillDialog.init, MathquillDialog);
