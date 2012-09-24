@@ -15,7 +15,7 @@ Please note that this is a beta version, so bugs and unimplemented features
 are all over the place.
 
 Dev note: on `git clone`- or `git pull`-ing, make sure to `git submodule update`
-and `make`.
+and `make`. Also, after the firts clone remember to `git submodule init` to initialize and checkout the submodules.
 
 ## Open-Source License
 
