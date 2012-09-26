@@ -24,13 +24,23 @@
     init : function(ed, url) {
       // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceMathquill');
       ed.addCommand('mceMathquill', function() {
-        ed.windowManager.open({
+        var popup = ed.windowManager.open({
           file : url + '/mathField.html',
           width : 706,
           height : 199,
           inline : 1
         }, {
           plugin_url : url // Plugin absolute URL
+        });
+        ed.windowManager.onClose.add(function onClose() {
+          // The return value of ed.windowManager.open for inline windows is
+          // not officially documented, but the code for the window amnager of
+          // the "inlinePopups" plugin specifies that popup.iframeElement.get()
+          // will return us the DOM of the popup.
+          var latex = popup.iframeElement.get().contentWindow.MathquillDialog.getLatex();
+          ed.execCommand('mceMathquillInsert', latex);
+          ed.windowManager.onClose.remove(onClose);
+          console.log('ran onClose');
         });
       });
 
