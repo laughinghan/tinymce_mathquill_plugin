@@ -47,7 +47,6 @@
           ed.execCommand('mceMathquillInsert', latex);
           ed.windowManager.onClose.remove(onClose);
           editing = false;
-          console.log('ran onClose');
         });
       });
 
@@ -60,7 +59,6 @@
 
       // Recognize that a user has clicked on the image, and pop-up the mathquill dialog box
       ed.onNodeChange.add(function(ed, cm, n) {
-        if (n.className === 'rendered-latex') console.log('editing:', editing);
         if (n.className === 'rendered-latex' && !editing) {
           ed.execCommand('mceMathquill');
         }
