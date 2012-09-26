@@ -52,6 +52,7 @@
 
       // Generate an image from the supplied latex and insert it into the tinyMCE document
       ed.addCommand('mceMathquillInsert', function(latex) {
+        if (!latex) return;
         var content = '<img class="rendered-latex" style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mathtex.cgi?'
           + latex + '"/>';
         ed.selection.setContent(content);
