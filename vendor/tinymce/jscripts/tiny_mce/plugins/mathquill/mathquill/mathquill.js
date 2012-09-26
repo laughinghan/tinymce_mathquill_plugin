@@ -473,7 +473,7 @@ function addToolbar(root, jQ) {
   root.toolbar = $('<div class="mathquill-toolbar"><ul class="mathquill-tab-bar">' + tabs.join('') + '</ul><div class="mathquill-toolbar-panes">' + panes.join('') + '</div></div>').prependTo(jQ);
 
   jQ.find('.mathquill-tab-bar li a')
-  .click(false)
+  .click(false) // don't go to linked fragment
   .mouseenter(function() {
     jQ.find('.mathquill-tab-bar li').removeClass('mathquill-tab-selected');
     jQ.find('.mathquill-tab-pane').removeClass('mathquill-tab-pane-selected');
@@ -481,7 +481,9 @@ function addToolbar(root, jQ) {
     $(this.href.replace(/.*#/, '#'), this.ownerDocument).addClass('mathquill-tab-pane-selected');
   });
   jQ.find('.mathquill-tab-bar li:first-child a').mouseenter();
-  jQ.click(function(){
+  jQ.find('a.mathquill-rendered-math')
+  .mousedown(false) // don't drag-to-select when clicking toolbar buttons
+  .click(function(){
     root.cursor.writeLatex(this.title, true);
     jQ.focus();
   });
@@ -498,7 +500,7 @@ _.text = function() {
   });
 };
 _.renderLatex = function(latex) {
-  this.jQ.children().slice(1).remove();
+  if (this.textarea) this.textarea.nextAll().remove();
   this.firstChild = this.lastChild = 0;
   this.cursor.appendTo(this).writeLatex(latex);
   this.blur();
