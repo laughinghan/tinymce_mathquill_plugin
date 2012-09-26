@@ -35,6 +35,13 @@
         });
       });
 
+      // Generate an image from the supplied latex and insert it into the tinyMCE document
+      ed.addCommand('mceMathquillInsert', function(latex) {
+        var content = '<img style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mimetex.cgi?'
+          + latex + '"/>';
+        ed.selection.setContent(content);
+      });
+
       // Register mathquill button
       ed.addButton('mathquill', {
         title : 'mathquill.desc',
