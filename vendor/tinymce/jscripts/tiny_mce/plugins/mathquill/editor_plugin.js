@@ -22,8 +22,13 @@
      * @param {string} url Absolute URL to where the plugin is located.
      */
     init : function(ed, url) {
+      // This is a local variable used as a lock on the window to prevent
+      // infinite loops in onNodeChange
+      var editing = false;
+
       // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceMathquill');
       ed.addCommand('mceMathquill', function() {
+        editing = true;
         var popup = ed.windowManager.open({
           file : url + '/mathField.html',
           width : 706,
@@ -40,15 +45,24 @@
           var latex = popup.iframeElement.get().contentWindow.MathquillDialog.getLatex();
           ed.execCommand('mceMathquillInsert', latex);
           ed.windowManager.onClose.remove(onClose);
+          editing = false;
           console.log('ran onClose');
         });
       });
 
       // Generate an image from the supplied latex and insert it into the tinyMCE document
       ed.addCommand('mceMathquillInsert', function(latex) {
-        var content = '<img style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mimetex.cgi?'
+        var content = '<img class="rendered-latex" style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mimetex.cgi?'
           + latex + '"/>';
         ed.selection.setContent(content);
+      });
+
+      // Recognize that a user has clicked on the image, and pop-up the mathquill dialog box
+      ed.onNodeChange.add(function(ed, cm, n) {
+        if (n.className === 'rendered-latex') console.log('editing:', editing);
+        if (n.className === 'rendered-latex' && !editing) {
+          ed.execCommand('mceMathquill');
+        }
       });
 
       // Register mathquill button
