@@ -33,7 +33,8 @@
           file : url + '/mathField.html',
           width : 706,
           height : 199,
-          inline : 1
+          inline : 1,
+          popup_css : false
         }, {
           plugin_url : url // Plugin absolute URL
         });
