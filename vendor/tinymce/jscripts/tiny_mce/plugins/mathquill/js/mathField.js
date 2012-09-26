@@ -9,6 +9,8 @@ var MathquillDialog = {
           tinyMCEPopup.close();
         }
       });
+    var existing = tinyMCEPopup.getWindowArg('existing_latex');
+    this.mathquill.mathquill('latex', existing);
   },
 
   getLatex : function() {

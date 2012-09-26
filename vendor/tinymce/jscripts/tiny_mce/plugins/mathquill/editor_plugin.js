@@ -27,7 +27,10 @@
       var editing = false;
 
       // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceMathquill');
-      ed.addCommand('mceMathquill', function() {
+      ed.addCommand('mceMathquill', function(existing_latex) {
+        if (!existing_latex) {
+         existing_latex = '';
+        }
         editing = true;
         var popup = ed.windowManager.open({
           file : url + '/mathField.html',
@@ -36,7 +39,8 @@
           inline : 1,
           popup_css : false
         }, {
-          plugin_url : url // Plugin absolute URL
+          plugin_url : url, // Plugin absolute URL
+          existing_latex : existing_latex // The latex currently in the img, '' if none
         });
         ed.windowManager.onClose.add(function onClose() {
           // The return value of ed.windowManager.open for inline windows is
@@ -54,14 +58,17 @@
       ed.addCommand('mceMathquillInsert', function(latex) {
         if (!latex) return;
         var content = '<img class="rendered-latex" style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mathtex.cgi?'
-          + latex + '"/>';
+          + latex + '" id="__MQ__itsjustajumptotheleft"/>';
         ed.selection.setContent(content);
+        $(ed.selection.getNode()).find('#__MQ__itsjustajumptotheleft')
+          .data('latex', latex).removeAttr('id');
       });
 
       // Recognize that a user has clicked on the image, and pop-up the mathquill dialog box
       ed.onNodeChange.add(function(ed, cm, n) {
         if (n.className === 'rendered-latex' && !editing) {
-          ed.execCommand('mceMathquill');
+          var latex = $(n).data('latex');
+          ed.execCommand('mceMathquill', latex);
         }
       });
 
