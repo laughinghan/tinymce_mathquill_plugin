@@ -58,16 +58,14 @@
       ed.addCommand('mceMathquillInsert', function(latex) {
         if (!latex) return;
         var content = '<img class="rendered-latex" style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mathtex.cgi?'
-          + latex + '" id="__MQ__itsjustajumptotheleft"/>';
+          + latex + '" alt="' + latex + '"/>';
         ed.selection.setContent(content);
-        $(ed.selection.getNode()).find('#__MQ__itsjustajumptotheleft')
-          .data('latex', latex).removeAttr('id');
       });
 
       // Recognize that a user has clicked on the image, and pop-up the mathquill dialog box
       ed.onNodeChange.add(function(ed, cm, n) {
         if (n.className === 'rendered-latex' && !editing) {
-          var latex = $(n).data('latex');
+          var latex = $(n).attr('alt');
           ed.execCommand('mceMathquill', latex);
         }
       });
