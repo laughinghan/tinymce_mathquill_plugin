@@ -10,7 +10,7 @@ var MathquillDialog = {
         }
       });
     var existing = tinyMCEPopup.getWindowArg('existing_latex');
-    this.mathquill.mathquill('latex', existing).focus();
+    this.mathquill.mathquill('latex', existing).mathquill('redraw').focus();
   },
 
   getLatex : function() {
