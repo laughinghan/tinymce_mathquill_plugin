@@ -1,4 +1,4 @@
-MQ_PLUGIN = ./vendor/tinymce/jscripts/tiny_mce/plugins/mathquill/mathquill/
+MQ_PLUGIN = ./vendor/tinymce/jscripts/tiny_mce/plugins/mathquill/vendor/
 MQ_JS = ${MQ_PLUGIN}/mathquill.js
 MQ_CSS = ${MQ_PLUGIN}/mathquill.css
 
