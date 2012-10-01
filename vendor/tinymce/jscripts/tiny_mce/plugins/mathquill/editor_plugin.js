@@ -34,8 +34,8 @@
         editing = true;
         var popup = ed.windowManager.open({
           file : url + '/mathField.html',
-          width : 706,
-          height : 199,
+          width : 700,
+          height : 175,
           inline : 1,
           popup_css : false
         }, {
