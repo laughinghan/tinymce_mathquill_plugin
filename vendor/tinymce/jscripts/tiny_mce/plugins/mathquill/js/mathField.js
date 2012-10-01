@@ -15,7 +15,7 @@ var MathquillDialog = {
 
   getLatex : function() {
     return this.mathquill.mathquill('latex');
-  },
+  }
 };
 
 tinyMCEPopup.onInit.add(MathquillDialog.init, MathquillDialog);
