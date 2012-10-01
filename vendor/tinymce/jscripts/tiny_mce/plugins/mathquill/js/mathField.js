@@ -14,7 +14,6 @@ var MathquillDialog = {
   },
 
   getLatex : function() {
-    var $ = window.top.$;
     return this.mathquill.mathquill('latex');
   },
 };
