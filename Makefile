@@ -22,3 +22,7 @@ ${MQ_FONTS}: ${VENDOR_MQ_FONTS}
 
 ${VENDOR_MQ_JS}: ${VENDOR_MQ_SRC}
 	cd ${VENDOR_MQ} && make cat
+
+.PHONY: clean
+clean:
+	rm -r ${MQ_PLUGIN}/*
