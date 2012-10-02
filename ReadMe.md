@@ -29,6 +29,11 @@ submodules. You should also read [more about submodules][submodules].
 
 [submodules]: http://git-scm.com/book/en/Git-Tools-Submodules
 
+Finally, many browsers restrict `file://`-protocol pages within iframes from
+communicating with container pages (for good reason), so for `demo.html` to
+work you may have to run `python -m SimpleHTTPServer` and visit
+`http://localhost:8000/demo.html` (or do something equivalent).
+
 ## Open-Source License
 
 [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)
