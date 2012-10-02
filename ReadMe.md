@@ -14,8 +14,20 @@ that are rendered as images.
 Please note that this is a beta version, so bugs and unimplemented features
 are all over the place.
 
-Dev note: on `git clone`- or `git pull`-ing, make sure to `git submodule update`
-and `make`. Also, after the firts clone remember to `git submodule init` to initialize and checkout the submodules.
+### Development Notes
+
+MathQuill's sources are included in the repo as a submodule, whenever it
+changes you must run `make` to build the sources so the plugin, as included in
+`demo.html`, can use it. (If `make` isn't working, try `make clean && make`.)
+
+If you don't know how submodules work, the quick-and-dirty is that when you
+`git clone` or `git pull`, you should run `git submodule update --init`, and
+when you change anything in the submodule, you MUST commit the change to the
+**OUTER** repo (which requires committing within the submodule first) BEFORE
+you next run `git submodule update`, because it discards changes to
+submodules. You should also read [more about submodules][submodules].
+
+[submodules]: http://git-scm.com/book/en/Git-Tools-Submodules
 
 ## Open-Source License
 
