@@ -21,7 +21,7 @@ ${MQ_FONTS}: ${VENDOR_MQ_FONTS}
 	cp -r $^ $@
 
 ${VENDOR_MQ_JS}: ${VENDOR_MQ_SRC}
-	cd ${VENDOR_MQ} && make cat
+	make -C ${VENDOR_MQ} cat
 
 .PHONY: clean
 clean:
