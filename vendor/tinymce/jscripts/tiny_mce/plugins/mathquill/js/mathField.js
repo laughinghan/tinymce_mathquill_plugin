@@ -16,6 +16,7 @@ var MathquillDialog = {
     mathquill.mathquill('latex', existing).mathquill('redraw').focus();
 
     fitWindow();
+    $('body').load(fitWindow); // in case font hasn't loaded yet, call it again
 
     function fitWindow() {
       win = tinyMCEPopup.id;
