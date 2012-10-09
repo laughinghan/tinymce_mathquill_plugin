@@ -65,12 +65,12 @@
       });
 
       // Recognize that a user has clicked on the image, and pop-up the mathquill dialog box
-      ed.onNodeChange.add(function(ed, cm, n) {
-        if (!editing && n.className === 'rendered-latex') {
-          editing = n;
-          var latex = $(n).attr('alt');
+      ed.onInit.add(function() {
+        $(ed.getDoc()).on('click', 'img.rendered-latex', function() {
+          editing = this;
+          var latex = $(this).attr('alt');
           ed.execCommand('mceMathquill', latex);
-        }
+        });
       });
 
       // Register mathquill button
