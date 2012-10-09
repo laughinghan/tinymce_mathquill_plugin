@@ -3,7 +3,7 @@ tinyMCEPopup.requireLangPack();
 var MathquillDialog = {
   init : function() {
     var $ = window.top.$;
-    this.mathquill  = $('.mathquill-editor', document).mathquill('editor')
+    this.mathquill = $('.mathquill-editor', document).mathquill('editor')
       .keydown(function(e) {
         if (e.which === 13) {
           tinyMCEPopup.close();
