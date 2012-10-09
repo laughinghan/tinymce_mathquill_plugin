@@ -3,21 +3,21 @@ tinyMCEPopup.requireLangPack();
 var MathquillDialog = {
   init : function() {
     var $ = window.top.$;
-    this.mathquill = $('.mathquill-editor', document).mathquill('editor')
+    var mathquill = this.mathquill = $('.mathquill-editor', document).mathquill('editor')
       .keydown(function(e) {
         if (e.which === 13) {
           tinyMCEPopup.close();
         }
       });
 
-    this.mathquill.on('keydown keypress', function() {
+    mathquill.on('keydown keypress', function() {
       setTimeout(function() {
         MathquillDialog.fitWindow();
       });
     });
 
     var existing = tinyMCEPopup.getWindowArg('existing_latex');
-    this.mathquill.mathquill('latex', existing).mathquill('redraw').focus();
+    mathquill.mathquill('latex', existing).mathquill('redraw').focus();
 
     this.fitWindow();
   },
