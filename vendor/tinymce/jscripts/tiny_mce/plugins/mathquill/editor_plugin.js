@@ -79,6 +79,26 @@
         cmd : 'mceMathquill',
         image : url + '/img/equation.gif'
       });
+
+      // Use mathquill-rendered-latex when previewing document
+      ed.onPreProcess.add(function(ed, o) {
+        if (o.get) {
+          var mathquills = ed.dom.select('img.rendered-latex', o.node);
+          $(mathquills).replaceWith(function() {
+            var latex = $(this).attr('alt');
+            return '<span class="mathquill-rendered-math">' + latex + '</span>';
+          });
+        }
+      });
+      // and include MathQuill in the preview
+      ed.onGetContent.add(function(ed, o) {
+        o.content =
+            '<link rel="stylesheet" href="' + url + '/vendor/mathquill.css"/>\n'
+          + o.content
+          + '<script type="text/javascript">\n'
+          +   'window.top.$(\'.mathquill-rendered-math\', document).mathquill();\n'
+          + '</script>';
+      });
     },
 
     /**
