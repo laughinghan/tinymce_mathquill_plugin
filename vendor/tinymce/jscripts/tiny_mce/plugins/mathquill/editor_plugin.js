@@ -24,14 +24,13 @@
     init : function(ed, url) {
       // This is a local variable used as a lock on the window to prevent
       // infinite loops in onNodeChange
-      var editing = false;
+      var editing = null;
 
       // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceMathquill');
       ed.addCommand('mceMathquill', function(existing_latex) {
         if (!existing_latex) {
          existing_latex = '';
         }
-        editing = true;
         var popup = ed.windowManager.open({
           file : url + '/mathField.html',
           width : 700,
@@ -50,7 +49,6 @@
           var latex = popup.iframeElement.get().contentWindow.MathquillDialog.getLatex();
           ed.execCommand('mceMathquillInsert', latex);
           ed.windowManager.onClose.remove(onClose);
-          editing = false;
         });
       });
 
@@ -59,12 +57,17 @@
         if (!latex) return;
         var content = '<img class="rendered-latex" style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mathtex.cgi?'
           + latex + '" alt="' + latex + '"/>';
+
+        if (editing) ed.selection.select(editing);
+        editing = null;
+
         ed.selection.setContent(content);
       });
 
       // Recognize that a user has clicked on the image, and pop-up the mathquill dialog box
       ed.onNodeChange.add(function(ed, cm, n) {
-        if (n.className === 'rendered-latex' && !editing) {
+        if (!editing && n.className === 'rendered-latex') {
+          editing = n;
           var latex = $(n).attr('alt');
           ed.execCommand('mceMathquill', latex);
         }
