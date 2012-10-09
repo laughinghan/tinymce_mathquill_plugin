@@ -22,8 +22,7 @@
      * @param {string} url Absolute URL to where the plugin is located.
      */
     init : function(ed, url) {
-      // This is a local variable used as a lock on the window to prevent
-      // infinite loops in onNodeChange
+      // The rendered-LaTeX-img element that we are currently editing, if there is one
       var editing = null;
 
       // Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceMathquill');
