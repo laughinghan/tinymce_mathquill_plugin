@@ -22,6 +22,8 @@
      * @param {string} url Absolute URL to where the plugin is located.
      */
     init : function(ed, url) {
+      var latexImgRendererUrlTempl = ed.getParam('mathquill_latex_img_renderer_url_templ');
+
       // The rendered-LaTeX-img element that we are currently editing, if there is one
       var editing = null;
 
@@ -54,8 +56,10 @@
       // Generate an image from the supplied latex and insert it into the tinyMCE document
       ed.addCommand('mceMathquillInsert', function(latex) {
         if (!latex) return;
-        var content = '<img class="rendered-latex" style="vertical-align:middle" src="http://www.tabuleiro.com/cgi-bin/mathtex.cgi?'
-          + latex + '" alt="' + latex + '"/>';
+        var content = '<img class="rendered-latex" '
+          + 'style="vertical-align:middle" '
+          + 'src="' + latexImgRendererUrlTempl.replace('*', latex) + '" '
+          + 'alt="' + latex + '"/>';
 
         if (editing) ed.selection.select(editing);
         editing = null;
