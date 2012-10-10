@@ -103,6 +103,31 @@
           +   'window.top.$(\'.mathquill-rendered-math\', document).mathquill();\n'
           + '</script>';
       });*/
+      
+      // When loading or setting content, transform mathquill-rendered-math spans into img previews of the equation, ready for editing
+      ed.onLoadContent.add(function(ed,o) {
+          var mathquills = ed.dom.select('span.mathquill-rendered-math', o.node);
+          $(mathquills).replaceWith(function() {
+            var latex = $(this).text();
+            var imgurl = '<img class="rendered-latex" '
+            	+ 'style="vertical-align:middle" '
+            	+ 'src="' + latexImgRendererUrlTempl.replace('*', latex) + '" '
+            	+ 'alt="' + latex + '"/>';
+            return imgurl;
+          });
+	  });
+	  
+	  ed.onSetContent.add(function(ed,o) {
+          var mathquills = ed.dom.select('span.mathquill-rendered-math', o.node);
+          $(mathquills).replaceWith(function() {
+            var latex = $(this).text();
+            var imgurl = '<img class="rendered-latex" '
+            	+ 'style="vertical-align:middle" '
+            	+ 'src="' + latexImgRendererUrlTempl.replace('*', latex) + '" '
+            	+ 'alt="' + latex + '"/>';
+            return imgurl;
+          });
+	  });
     },
 
     /**
