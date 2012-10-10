@@ -83,7 +83,7 @@
         image : url + '/img/equation.gif'
       });
 
-      // Use mathquill-rendered-latex when previewing document
+      // Use mathquill-rendered-latex when getting the contents of the document
       ed.onPreProcess.add(function(ed, o) {
         if (o.get) {
           var mathquills = ed.dom.select('img.rendered-latex', o.node);
@@ -93,15 +93,16 @@
           });
         }
       });
-      // and include MathQuill in the preview
-      ed.onGetContent.add(function(ed, o) {
+      // Uncomment below to include MathQuill in the returned document (for the preview plugin as an example)
+      // This is disabled as there is no checking for duplicates of the script line
+      /*ed.onGetContent.add(function(ed, o) {
         o.content =
             '<link rel="stylesheet" href="' + url + '/vendor/mathquill.css"/>\n'
           + o.content
           + '<script type="text/javascript">\n'
           +   'window.top.$(\'.mathquill-rendered-math\', document).mathquill();\n'
           + '</script>';
-      });
+      });*/
     },
 
     /**
