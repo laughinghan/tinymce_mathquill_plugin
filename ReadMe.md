@@ -6,7 +6,8 @@ by [Ian][] and [Han][].
 [Han]: http://github.com/laughinghan
 
 This is a [TinyMCE][] plugin to let you use [MathQuill][] to edit equations
-that are rendered as images.
+that are rendered as images. The actual plugin is in
+`vendor/tinymce/jscripts/tiny_mce/plugins/mathquill`.
 
 [TinyMCE]: http://www.tinymce.com
 [MathQuill]: http://mathquill.com
