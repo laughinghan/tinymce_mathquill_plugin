@@ -71,7 +71,7 @@
       ed.onInit.add(function() {
         $(ed.getDoc()).on('click', 'img.rendered-latex', function() {
           editing = this;
-          var latex = $(this).attr('alt');
+          var latex = this.getAttribute('alt');
           ed.execCommand('mceMathquill', latex);
         });
       });
@@ -88,7 +88,7 @@
         if (o.get) {
           var mathquills = ed.dom.select('img.rendered-latex', o.node);
           $(mathquills).replaceWith(function() {
-            var latex = $(this).attr('alt');
+            var latex = this.getAttribute('alt');
             return '<span class="mathquill-rendered-math">' + latex + '</span>';
           });
         }
@@ -109,11 +109,10 @@
           var mathquills = ed.dom.select('span.mathquill-rendered-math', o.node);
           $(mathquills).replaceWith(function() {
             var latex = $(this).text();
-            var imgurl = '<img class="rendered-latex" '
+            return '<img class="rendered-latex" '
             	+ 'style="vertical-align:middle" '
             	+ 'src="' + latexImgRendererUrlTempl.replace('*', latex) + '" '
             	+ 'alt="' + latex + '"/>';
-            return imgurl;
           });
 	  });
 	  
@@ -121,11 +120,10 @@
           var mathquills = ed.dom.select('span.mathquill-rendered-math', o.node);
           $(mathquills).replaceWith(function() {
             var latex = $(this).text();
-            var imgurl = '<img class="rendered-latex" '
+            return '<img class="rendered-latex" '
             	+ 'style="vertical-align:middle" '
             	+ 'src="' + latexImgRendererUrlTempl.replace('*', latex) + '" '
             	+ 'alt="' + latex + '"/>';
-            return imgurl;
           });
 	  });
     },
