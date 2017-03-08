@@ -1,51 +1,38 @@
-tinyMCEPopup.requireLangPack();
 
+var args = top.tinymce.activeEditor.windowManager.getParams();
+
+
+
+
+//tinyMCEPopup.requireLangPack();
+//
 var MathquillDialog = {
-  init : function() {
-    var $ = window.top.$;
-    var mathquill = this.mathquill = $('.mathquill-editor', document).mathquill('editor')
-      .keydown(function(e) {
-        if (e.which === 13) {
-          tinyMCEPopup.close();
-        }
-      });
+    init: function () {
+        var $ = window.top.$;
 
-    mathquill.on('keydown keypress', function() { setTimeout(fitWindow); });
+        var mathquill = window.top.MathQuill.getInterface(2);
+        this.mathquill = mathquill;
+        console.log(mathquill);
 
-    var existing = tinyMCEPopup.getWindowArg('existing_latex');
-    mathquill.mathquill('latex', existing).mathquill('redraw').focus();
 
-    fitWindow();
-    $('body').load(fitWindow); // in case font hasn't loaded yet, call it again
+        var mathFieldSpan = document.getElementById('math-field');
+        //var latexSpan = document.getElementById('latex');
 
-    function fitWindow() {
-      win = tinyMCEPopup.id;
-      var dw = dh = 0;
-      var w = mathquill.outerWidth()+10;
-      var h = mathquill.outerHeight()+10;
+        var mathField = this.mathquill.MathField(mathFieldSpan, {
+            spaceBehavesLikeTab: true, // configurable
+            handlers: {
+                edit: function () { // useful event handlers
+                    //latexSpan.textContent = mathField.latex(); // simple API
+                }
+            }
+        });
+        this.mathField = mathField;
 
-      // Now trick window into thinking it's that size.
-      // so all internal resizing gets done properly..
-      tinyMCEPopup.params.mce_height = h;
-      tinyMCEPopup.params.mce_width = w;
-      tinyMCEPopup.resizeToInnerSize();
+    },
 
-      // Now move picture back to center.
-      var vpw = tinyMCE.DOM.getViewPort().w;
-      var vph = tinyMCE.DOM.getViewPort().h;
-      var top = vph > h ? (vph-h)/2 : 0;
-      var left = vpw > w ? (vpw-w)/2 : 0;
-
-      // recenter.
-      var popup = tinyMCE.DOM.doc.getElementById(tinyMCEPopup.id);
-      popup.style.top = top+"px";
-      popup.style.left = left+"px";
+    getLatex: function () {
+        return this.mathField.latex();
     }
-  },
-
-  getLatex : function() {
-    return this.mathquill.mathquill('latex');
-  }
 };
-
-tinyMCEPopup.onInit.add(MathquillDialog.init, MathquillDialog);
+//
+//tinyMCEPopup.onInit.add(MathquillDialog.init, MathquillDialog);
