@@ -5,11 +5,7 @@
 <title>TinyMCE MathQuill Plugin Demo</title>
 
 <script type="text/javascript" src="vendor/jquery.js"></script>
-    <script type="text/javascript" src="vendor/tinymce/jscripts/tiny_mce/plugins/mathquill/vendor/mathquill.js"></script>
-<script type="text/javascript">
-var AMTcgiloc = "http://www.imathas.com/cgi-bin/mimetex.cgi";  		//change me
-</script>
-
+<script type="text/javascript" src="vendor/tinymce/jscripts/tiny_mce/plugins/mathquill/vendor/mathquill.js"></script>
 <!-- TinyMCE -->
 <script type="text/javascript" src="vendor/tinymce/jscripts/tiny_mce/tinymce.js"></script>
 
@@ -18,14 +14,8 @@ var AMTcgiloc = "http://www.imathas.com/cgi-bin/mimetex.cgi";  		//change me
         selector: "textarea",
         theme: "modern",
         menubar: false,
-        //theme_advanced_buttons1 : "fontselect,fontsizeselect,formatselect,bold,italic,underline,strikethrough,separator,sub,sup,separator,cut,copy,paste,undo,redo",
-        //theme_advanced_buttons2 : "justifyleft,justifycenter,justifyright,justifyfull,separator,numlist,bullist,outdent,indent,separator,forecolor,backcolor,separator,hr,link,unlink,image,media,table,code,separator",
         toolbar: "undo redo | mathquill preview",
-        //theme_advanced_fonts : "Arial=arial,helvetica,sans-serif,Courier New=courier new,courier,monospace,Georgia=georgia,times new roman,times,serif,Tahoma=tahoma,arial,helvetica,sans-serif,Times=times new roman,times,serif,Verdana=verdana,arial,helvetica,sans-serif",
-        //theme_advanced_toolbar_location : "top",
-        //theme_advanced_toolbar_align : "left",
-        //theme_advanced_statusbar_location : "bottom",
-        plugins: 'mathquill,table,media,preview'
+        plugins: 'mathquill,table,media,preview_mathquill'
     });
 
 </script>
