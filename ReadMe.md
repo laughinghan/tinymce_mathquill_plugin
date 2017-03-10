@@ -5,6 +5,10 @@ by [Ian][] and [Han][].
 [Ian]: http://github.com/jungziege
 [Han]: http://github.com/laughinghan
 
+Updated by [Dylan][] to TinyMce 4.5.5 and MathQuill v0.10.1.
+
+[Dylan]: https://github.com/dylandhall
+
 This is a [TinyMCE][] plugin to let you use [MathQuill][] to edit equations
 that are rendered as images. The actual plugin is in
 `vendor/tinymce/jscripts/tiny_mce/plugins/mathquill`.
