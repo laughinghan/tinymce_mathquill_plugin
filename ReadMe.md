@@ -1,9 +1,10 @@
 # TinyMCE MathQuill Plugin
 
-by [Ian][] and [Han][].
+by [Ian][] and [Han][], updated by [Dylan][].
 
 [Ian]: http://github.com/jungziege
 [Han]: http://github.com/laughinghan
+[Dylan]: https://github.com/dylandhall
 
 This is a [TinyMCE][] plugin to let you use [MathQuill][] to edit equations
 that are rendered as images. The actual plugin is in
@@ -34,6 +35,8 @@ Finally, many browsers restrict `file://`-protocol pages within iframes from
 communicating with container pages (for good reason), so for `demo.html` to
 work you may have to run `python -m SimpleHTTPServer` and visit
 `http://localhost:8000/demo.html` (or do something equivalent).
+
+Currently using TinyMce 4.5.5 and MathQuill v0.10.1.
 
 ## Open-Source License
 
